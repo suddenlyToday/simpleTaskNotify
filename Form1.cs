@@ -34,16 +34,18 @@ namespace SimpleTaskNotify
                 string Content = File.ReadAllText(FILE_NAME);
                 DataGridDataSource.TASK_LIST = JsonConvert.DeserializeObject<List<TaskDo>>(Content);
                 DataGridDataSource.TASK_DTO_LIST = new BindingList<TaskDto>(DataGridDataSource.Convert2Dto(DataGridDataSource.TASK_LIST));
-                dataGridView1.DataSource = DataGridDataSource.TASK_DTO_LIST;
-                DataGridDataSource.TASK_DTO_LIST.ListChanged += listChanged;
-                dataGridView1.ClearSelection();
             }
             else
             {
                 string contents = string.Empty;
                 File.WriteAllText(FILE_NAME, contents);
+                DataGridDataSource.TASK_LIST = new List<TaskDo>();
+                DataGridDataSource.TASK_DTO_LIST = new BindingList<TaskDto>();
+
             }
-            Console.WriteLine(DateTime.Now.Ticks);
+            dataGridView1.DataSource = DataGridDataSource.TASK_DTO_LIST;
+            DataGridDataSource.TASK_DTO_LIST.ListChanged += listChanged;
+            dataGridView1.ClearSelection();
         }
 
         private void button1_Click(object sender, EventArgs e)
