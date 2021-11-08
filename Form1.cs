@@ -31,7 +31,7 @@ namespace SimpleTaskNotify
             this.timer1.Interval = TIMER_INTERVAL;
             if (File.Exists(FILE_NAME))
             {
-                string Content = File.ReadAllText(FILE_NAME);
+                string Content = File.ReadAllText(FILE_NAME).IfEmptyThenGet("[]");
                 DataGridDataSource.TASK_LIST = JsonConvert.DeserializeObject<List<TaskDo>>(Content);
                 DataGridDataSource.TASK_DTO_LIST = new BindingList<TaskDto>(DataGridDataSource.Convert2Dto(DataGridDataSource.TASK_LIST));
             }
