@@ -72,7 +72,7 @@ namespace SimpleTaskNotify
         private void timer1_Tick(object sender, EventArgs e)
         {
             long ticks = DateTime.Now.Ticks;
-            if (DataGridDataSource.TASK_LIST.Any(task => task.BeginTime > ticks || task.DeadLine < ticks)
+            if (DataGridDataSource.TASK_LIST.Any(task => task.BeginTime < ticks || task.DeadLine < ticks)
                 && ticks > doNotNotifyTime)
             {
                 this.Show();
