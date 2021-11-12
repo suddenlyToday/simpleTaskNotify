@@ -69,6 +69,8 @@ namespace SimpleTaskNotify
             dateTimePicker1.CustomFormat = "MM月dd日HH点mm分";
             dateTimePicker1.ShowUpDown = true;
             dateTimePicker1.Value = DateTime.Now;
+
+            textBox1.Text = "";
         }
     }
 }

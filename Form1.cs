@@ -17,7 +17,7 @@ namespace SimpleTaskNotify
         private const string FILE_NAME = "task.json";
         private const int THIRTY = 30;
         private const long SLEEP_MINUTES_TICKS = THIRTY * 60 * 1000L * ONE_MILLSECOND_TICKS;
-        private const int TIMER_INTERVAL = 300000;
+        private const int TIMER_INTERVAL = 3000;
         private const int ONE_MILLSECOND_TICKS = 10000;
         private addForm addForm = new addForm();
         private long doNotNotifyTime = DateTime.Now.Ticks;
@@ -75,6 +75,7 @@ namespace SimpleTaskNotify
             if (DataGridDataSource.TASK_LIST.Any(task => task.BeginTime < ticks || task.DeadLine < ticks)
                 && ticks > doNotNotifyTime)
             {
+                this.TopMost = true;
                 this.Show();
                 this.Activate();
             }
@@ -90,6 +91,7 @@ namespace SimpleTaskNotify
 
         private void Form1_Activated(object sender, EventArgs e)
         {
+            this.TopMost = false;
             this.timer1.Stop();
         }
 
